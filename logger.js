@@ -35,6 +35,7 @@
                 _error('App ID missing');
             self.options = options || {
                 sendConsoleErrors: true,
+                overrideConsoleLog: true,
                 debug: false 
             };
 
@@ -42,13 +43,14 @@
             self.app_id = app;
             if(self.options.sendConsoleErrors)
                 _sendConsoleError();
+            if(self.options.overrideConsoleLog)
+                _ourConsoleLog();
         }
 
         function _sendConsoleError() {
             var _onerror = window.onerror;
             //send console error messages to Loggly
             window.onerror = function (msg, url, line, col){
-                console.log('erroorr');
                 _sendEvent({ 
                     category: 'BrowserJsException',
                     exception: {
@@ -63,6 +65,15 @@
                     _onerror.apply(window, arguments);
                 }
             };
+        }
+
+        function _ourConsoleLog() {
+            var c = window.console;
+    		var _log = console.log;
+    		window.console.log = function() {
+        		_sendEvent(arguments);
+        		_log.apply(c, arguments);
+    		}
         }
 
         self.log = _sendEvent;
