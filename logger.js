@@ -24,7 +24,8 @@
         var 
         self = this;
 
-        var API_URL = "http://localhost:8081";
+        var API_URL = "https://logbase-dev.herokuapp.com";
+        //var API_URL = "http://localhost:8081";
 
         self.init = _init;
         function _init(key, app, options) {
