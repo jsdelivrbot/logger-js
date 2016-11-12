@@ -78,11 +78,17 @@
         self.log = _sendEvent;
         function _sendEvent(data) {
             try {
+                var _metadata = {
+                    platform: navigator.platform,
+                    userAgent: navigator.userAgent,
+                    app: navigator.appCodeName
+                }
                 var xhr = new XMLHttpRequest();   
                 xhr.open("POST", API_URL + '/event');
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 var params = {
                     'data': data,
+                    '_metadata': _metadata,
                     'app_id': self.app_id,
                     'key': self.key
                 }
