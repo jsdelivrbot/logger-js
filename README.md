@@ -7,7 +7,7 @@ Get your API keys from [https://logbase.techulus.in/](LogBase)
 
 Include the logger.min.js script before the closing </body> tag and then call Logger.init()
 ```html
-<script src="https://cdn.rawgit.com/arjunkomath/logger-js/master/logger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/arjunkomath/logger-js@master/logger.min.js"></script>
 <script>Logger.init('<-- Your API key -->', '<-- Your app name -->')</script>
 ```
 And you're done! 
